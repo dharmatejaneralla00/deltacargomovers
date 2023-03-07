@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-h__3w6##yg*x7jb!ggjjc!ya3i)8_x1$1o1d(_^g(h@e%$tbno
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["deltacargomovers.azurewebsites.net"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'booking',
+    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = [
+"whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -122,3 +124,4 @@ STATIC_ROOT = BASE_DIR / "static/"
 STATICFILES_DIRS = [
    os.path.join(BASE_DIR, 'templates/static/')
 ]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
