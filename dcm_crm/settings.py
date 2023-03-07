@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-h__3w6##yg*x7jb!ggjjc!ya3i)8_x1$1o1d(_^g(h@e%$tbno
 DEBUG = True
 
 ALLOWED_HOSTS = ["deltacargomovers.azurewebsites.net"]
-CSRF_TRUSTED_ORIGINS = ["http://deltacargomovers.azurewebsites.net/"]
+CSRF_TRUSTED_ORIGINS = ["https://*.azurewebsites.net/"]
 
 # Application definition
 
