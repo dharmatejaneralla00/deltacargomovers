@@ -1,0 +1,236 @@
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Delta Cargo Movers</title>
+
+</head>
+{% include 'sidenav.html' %}
+
+<body>
+    <div class="container">
+        <form action="" method="post">
+            <div class="row d-flex justify-content-center ">
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center ">
+                    <div class="form-gap">
+
+                        <select name="cashcredit" id="creditcard">
+                            <option value="cash">Cash</option>
+                            <option value="credit">Credit</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center" id="clientlist">
+                    <div class="form-gap" id="list" style="display: none;">
+                        <label>Credit List</label>
+                        <select name="clientlist">
+                            <option value="volvo">Client 1</option>
+                            <option value="saab">Clinet 2</option>
+                            <option value="opel">Client 3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-center ">
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap">
+                        <label for="pcs">Pieces
+                            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" id="pcs" name="pcs" value="0" onclick="settozero('pcs')" required>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap">
+                        <label for="wt">Weight (gms)
+                            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" id="wt" name="wt" value="0.0" onclick="settozero('wt')" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center ">
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap" id="frname">
+                        <label for="fname">From Name
+                            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" id="fname" name="fname">
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap" id="toname">
+                        <label>To Name
+                            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" id="fname" name="tname">
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center ">
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap" id="fadd">
+                        <label for="fadd">From Address :</label>
+                        <input type="text" id="fname" name="fadd">
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap" id="tadd">
+                        <label for="tadd">To Address
+                            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" id="fname" name="tadd">
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap" id="fno">
+                        <label for="fno">From Phone No :</label>
+                        <input type="number" id="fname" name="fno">
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap" id="tono">
+                        <label >To Phone No :</label>
+                        <input type="number" id="fname" name="tno">
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center ">
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="form-gap">
+                            <label >Invoice Number :</label>
+                            <input type="number" id="fname" name="invno" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="form-gap">
+                            <label >Invoice Amt :</label>
+                            <input type="number" id="fname" name="invamt" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row d-flex justify-content-center ">
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="form-gap">
+                            <label for="charge">Charges
+                                :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="number" id="charge" name="charge" value="0.0" required
+                                onclick="settozero('charge')">
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="form-gap">
+                            <label for="frcharge">Freight Charge :</label>
+                            <input type="number" id="frcharge" name="frcharge" value="0.0"
+                                onclick="settozero('frcharge')">
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="form-gap">
+                            <label for="lrcharge">LR Charge
+                                :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="number" id="lrcharge" name="lrcharge" value="0.0"
+                                onclick="settozero('lrcharge')">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row d-flex justify-content-center ">
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="form-gap">
+                            <label for="othercharge">Others
+                                :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="text" id="othercharge" name="othercharge" value="0.0"
+                                onclick="settozero('othercharge')">
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="form-gap">
+                            <label for="fname">Door Delivery Charges :</label>
+                            <input type="number" id="door_delivery_charge" name="door_delivery_charge" value="0.0"
+                                onclick="settozero('door_delivery_charge')">
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="form-gap">
+                            <label for="total">Total charges:</label>
+                            <input type="number" id="total" name="total" onfocus="totalcharges()" title="total">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <br><br> <br> <br><br>
+                <div class="d-flex justify-content-center">
+
+                    <input id="input" type="submit" value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    document.getElementById('date').valueAsDate = new Date();
+    const credit = document.getElementById("creditcard");
+    const fadd = document.getElementById("fadd");
+    const tadd = document.getElementById("tadd");
+    const fno = document.getElementById("fno");
+    const tno = document.getElementById("tono");
+    const list = document.getElementById("list");
+    const fname = document.getElementById("frname");
+    const toname = document.getElementById("toname");
+
+    credit.addEventListener("change", function (event) {
+        if (event.target.value == "cash") {
+            fadd.style.display = "block";
+            tadd.style.display = "block";
+            fno.style.display = "block";
+            tno.style.display = "block";
+            list.style.display = "none";
+            fname.style.display = "block";
+            toname.style.display = "block";
+        } else {
+            fadd.style.display = "none";
+            tadd.style.display = "none";
+            fno.style.display = "none";
+            tno.style.display = "none";
+            list.style.display = "block";
+            fname.style.display = "none";
+            toname.style.display = "none";
+        }
+    });
+
+    function totalcharges() {
+        var charge = document.getElementById("charge").value;
+        var lrcharge = document.getElementById("lrcharge").value;
+        var frcharge = document.getElementById("frcharge").value;
+        var door_delivery_charge = document.getElementById("door_delivery_charge").value;
+        var othercharge = document.getElementById("othercharge").value;
+        // c = parseFloat(charge) + parseFloat(lrcharge) + parseFloat(frcharge) + parseFloat(door_delivery_charge) + parseFloat(othercharge);
+        const c = parseFloat(charge) + parseFloat(lrcharge) + parseFloat(frcharge) + parseFloat(door_delivery_charge) + parseFloat(othercharge);
+        document.getElementById("total").value = c;
+    }
+    function settozero(filed) {
+        document.getElementById(filed).value = "";
+
+    }
+</script>
+
+</html>

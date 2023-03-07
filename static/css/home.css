@@ -1,0 +1,21 @@
+.flex
+{
+    display: flex;
+}
+
+  .container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+}
+.box
+{
+    width: 20%;
+    height: 3%;
+    padding:25px;
+    margin: 8%;
+    align-items: center;
+    background-color: blue;
+}

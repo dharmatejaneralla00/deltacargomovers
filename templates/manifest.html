@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1024">
+    <link rel="stylesheet" href="/css/nav-css.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style type="text/css" media="screen">
+    
+    .form-gap
+    {
+      margin-right: 3%;
+      margin-top:3%;
+    }
+    label{
+      font-weight: 800;
+    }
+    input{
+      border-color: grey;
+      border-radius: 5px;
+    }
+    #input
+    {
+      background-color: grey;
+      color:white ;
+      margin-right: 30%;
+      min-width: auto;
+      min-height: auto;
+      padding: .3em;
+    }
+  
+    </style>
+</head>
+<body>
+  <div class="container d-flex flex-row justify-content-end my-4" >
+    <div class="flex-column">
+      <h6 style="margin-right: 20px;">User Name</h6>
+    </div>
+    <div class="flex-column">
+      <span class="icon"><i class="fa-solid fa-user fa"></i></span>
+    </div>
+  </div>
+  <div class="container justify-content-center d-flex flex-column">
+    <nav class="primary-nav nav-toggle">
+ 
+     <button href="#" class="hamburger open-panel nav-toggle"></button>
+   
+     <nav role="navigation" class="menu">
+   
+       <a href="#" class="logotype"><img src="/images/csilogo.png" alt="" height="30px" width="150px"></a> 
+   
+       <div class="overflow-container">
+   
+         <ul class="menu-dropdown">
+   
+           <li><a href="#">Dashboard</a><span class="icon"><i class="fa fa-dashboard"></i></span></li>
+   
+           <li class="menu-hasdropdown">
+             <a href="#">Booking</a><span class="icon"><i class="fa-solid fa-plus"></i></span>
+   
+             <label title="toggle menu" for="settings">
+              <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+             </label>
+             <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+   
+             <ul class="sub-menu-dropdown">
+               <li><a href="">Profile</a></li>
+               <li><a href="">Security</a></li>
+               <li><a href="">Account</a></li>
+             </ul>
+           </li>
+           <li class="menu-hasdropdown">
+             <a href="#">Manifest</a><span class="icon"><i class="fa-solid fa-file"></i></span>
+   
+             <label title="toggle menu" for="settings">
+              <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+             </label>
+             <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+   
+             <ul class="sub-menu-dropdown">
+               <li><a href="">Profile</a></li>
+               <li><a href="">Security</a></li>
+               <li><a href="">Account</a></li>
+             </ul>
+           </li>
+           <li class="menu-hasdropdown">
+             <a href="#">Received</a><span class="icon"><i class="fa-solid fa-inbox"></i></span>
+   
+             <label title="toggle menu" for="settings">
+              <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+             </label>
+             <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+   
+             <ul class="sub-menu-dropdown">
+               <li><a href="">Profile</a></li>
+               <li><a href="">Security</a></li>
+               <li><a href="">Account</a></li>
+             </ul>
+           </li>
+           <li class="menu-hasdropdown">
+             <a href="#">Delivery</a><span class="icon"><i class="fa-solid fa-truck"></i></span>
+   
+             <label title="toggle menu" for="settings">
+              <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+             </label>
+             <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+   
+             <ul class="sub-menu-dropdown">
+               <li><a href="">Profile</a></li>
+               <li><a href="">Security</a></li>
+               <li><a href="">Account</a></li>
+             </ul>
+           </li>
+   
+           <li><a href="#">Reports</a><span class="icon"><i class="fa-solid fa-note-sticky"></i></span></li>
+   
+           <li><a href="#">Settings</a><span class="icon"><i class=" fa-solid  fa-gear"></i></span></li>
+ 
+           <li><a href="#">Logout</a><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span></li>
+   
+         </ul>
+   
+       </div>
+   
+     </nav>
+   
+   </divnav>
+ </div>
+  <div class="container-fluid justify-content-center">
+    <form action="/action_page.php">
+      <div class="d-flex flex-row justify-content-center">
+        <div class="form-gap">
+          <label for="fname">Date: &nbsp;&nbsp;</label>
+          <input type="date" id="fname" name="fname">
+        </div>
+       <div class="form-gap">
+        <label for="fname">Vehical No: &nbsp;&nbsp;</label>
+        <input type="text" id="fname" name="fname">
+       </div>
+      </div>
+      <div class="form-gap justify-content-center d-flex">
+        <label for="cars">Destination: &nbsp;&nbsp;</label>
+    <select name="cars" id="cars">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="opel">Opel</option>
+      <option value="audi">Audi</option>
+    </select>
+      </div>
+      <div class="form-gap justify-content-center d-flex">
+        <label for="fname">Vehical No:&nbsp;&nbsp;</label>
+        <input type="text" id="fname" name="fname">
+      </div>
+      <div class="form-gap justify-content-center d-flex">
+        <input type="text" id="fname" name="fname" style="height: 10rem;width:40rem">
+      </div>
+    </div>
+
+
+
+
+      <br><br>
+      <div class="d-flex justify-content-end">
+        
+      <input id="input" type="submit" value="Submit">
+      </div>
+    </form>
+  
+  
+</body>
+<script>
+  $('.nav-toggle').click(function(e) {
+  
+  e.preventDefault();
+  $("html").toggleClass("openNav");
+  $(".nav-toggle").toggleClass("active");
+
+});
+</script>
+</html>

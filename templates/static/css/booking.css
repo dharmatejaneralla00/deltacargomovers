@@ -1,0 +1,42 @@
+.form-gap {
+  margin-right: 3%;
+  margin-top: 3%;
+}
+
+label {
+  font-weight: 800;
+}
+
+input,
+select {
+  border-color: grey;
+  border-radius: 5px;
+  border: 2px solid gray;
+  line-height: 10px;
+  margin-top: 20px;
+}
+
+.container {
+  width: auto;
+  top: 20%;
+  margin-top: 8%;
+  align-items: center;
+}
+input[type="submit"] {
+  font-family: "Baloo Bhai 2";
+  text-transform: uppercase;
+  outline: 0;
+  background: rgb(44, 44, 44);
+  width: 10%;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background: #e00e7b;
+}

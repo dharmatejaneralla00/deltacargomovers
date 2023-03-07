@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DCM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="{% static 'js/login.js' %}"></script>
+</head>
+
+<body>
+  {% for i in messages %}
+  <div class="alert" id="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    Incorrect Username/password
+  </div>
+  {% endfor %}
+  <div class="login-page">
+    <div class="form">
+      <img src="{% static 'images/logo.png' %}" height="100px" width="300px" style="margin-bottom: 20px;">
+      <p class="text">DELTA CARGO MOVERS</p>
+      <form class="login-form" action=" " method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="submit" value="Login" style="font-size:18px;">
+        <p style="margin-top: 20px; font-size:16px;"><a href="#">Forgot password</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
