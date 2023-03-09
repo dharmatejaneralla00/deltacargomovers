@@ -21,7 +21,8 @@
 
 <body>
     <div class="container">
-        <form action="" method="post">
+        <form action="{% url 'book/' %}" method="post">
+            {% csrf_token %}
             <div class="row d-flex justify-content-center ">
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap">
@@ -41,10 +42,11 @@
                 <div class="col-md-3 d-flex justify-content-center" id="clientlist">
                     <div class="form-gap" id="list" style="display: none;">
                         <label>Credit List</label>
-                        <select name="clientlist">
-                            <option value="volvo">Client 1</option>
-                            <option value="saab">Clinet 2</option>
-                            <option value="opel">Client 3</option>
+                        <select name="clientlist" id="clientlist">
+                            <option selected hidden>Select from list</option>
+                            {% for i in clientlist %}
+                            <option value="{{i.clientname}}">{{i.clientname}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
@@ -78,7 +80,7 @@
                     <div class="form-gap" id="toname">
                         <label>To Name
                             :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input type="number" id="fname" name="tname">
+                        <input type="text" id="fname" name="tname">
                     </div>
                 </div>
             </div>
@@ -86,14 +88,14 @@
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="fadd">
                         <label for="fadd">From Address :</label>
-                        <input type="text" id="fname" name="fadd">
+                        <input type="text" id="fromadd" name="fadd">
                     </div>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="tadd">
                         <label for="tadd">To Address
                             :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input type="number" id="fname" name="tadd">
+                        <input type="text" id="fname" name="tadd">
                     </div>
                 </div>
             </div>
@@ -101,25 +103,25 @@
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="fno">
                         <label for="fno">From Phone No :</label>
-                        <input type="number" id="fname" name="fno">
+                        <input type="number" id="fromno" name="fno">
                     </div>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="tono">
-                        <label >To Phone No :</label>
+                        <label>To Phone No :</label>
                         <input type="number" id="fname" name="tno">
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center ">
                     <div class="col-md-3 d-flex justify-content-center">
                         <div class="form-gap">
-                            <label >Invoice Number :</label>
+                            <label>Invoice Number :</label>
                             <input type="number" id="fname" name="invno" required>
                         </div>
                     </div>
                     <div class="col-md-3 d-flex justify-content-center">
                         <div class="form-gap">
-                            <label >Invoice Amt :</label>
+                            <label>Invoice Amt :</label>
                             <input type="number" id="fname" name="invamt" required>
                         </div>
                     </div>
@@ -170,7 +172,7 @@
                     <div class="col-md-3 d-flex justify-content-center">
                         <div class="form-gap">
                             <label for="total">Total charges:</label>
-                            <input type="number" id="total" name="total" onfocus="totalcharges()" title="total">
+                            <input type="number" id="total" name="totalcharge" onfocus="totalcharges()" title="total">
                         </div>
                     </div>
 
@@ -189,31 +191,20 @@
 <script>
     document.getElementById('date').valueAsDate = new Date();
     const credit = document.getElementById("creditcard");
-    const fadd = document.getElementById("fadd");
-    const tadd = document.getElementById("tadd");
-    const fno = document.getElementById("fno");
-    const tno = document.getElementById("tono");
+
     const list = document.getElementById("list");
-    const fname = document.getElementById("frname");
-    const toname = document.getElementById("toname");
+    const clientlist = document.getElementById("clientlist");
+
 
     credit.addEventListener("change", function (event) {
         if (event.target.value == "cash") {
-            fadd.style.display = "block";
-            tadd.style.display = "block";
-            fno.style.display = "block";
-            tno.style.display = "block";
             list.style.display = "none";
-            fname.style.display = "block";
-            toname.style.display = "block";
+            document.getElementById('fromname').value = " ";
+            document.getElementById('fromadd').value = " ";
+            document.getElementById('fromno').value = " ";
         } else {
-            fadd.style.display = "none";
-            tadd.style.display = "none";
-            fno.style.display = "none";
-            tno.style.display = "none";
             list.style.display = "block";
-            fname.style.display = "none";
-            toname.style.display = "none";
+            document.getElementById('fromname').value = " ";
         }
     });
 
@@ -231,6 +222,28 @@
         document.getElementById(filed).value = "";
 
     }
+    clientlist.addEventListener("change", function (event) {
+        var name = event.target.value;
+        var xhr = new XMLHttpRequest();
+        const url = '/api/getclientlist/' + name + '?format=json';
+        xhr.open('GET', url, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Parse the JSON response data and use it to update the HTML page
+                var data = JSON.parse(xhr.responseText);
+                document.getElementById("fromname").value = data.data.fname;
+                document.getElementById("fromadd").value = data.data.fromadd;
+                document.getElementById("fromno").value = data.data.fno;
+
+            } else {
+                console.error('API request failed');
+            }
+        };
+        xhr.onerror = function () {
+            console.error('API request failed');
+        };
+        xhr.send();
+    });
 </script>
 
 </html>

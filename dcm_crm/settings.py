@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-h__3w6##yg*x7jb!ggjjc!ya3i)8_x1$1o1d(_^g(h@e%$tbno
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["deltacargomovers.azurewebsites.net"]
+ALLOWED_HOSTS = ["deltacargomovers.azurewebsites.net","*"]
 CSRF_TRUSTED_ORIGINS = ["https://*.azurewebsites.net/"]
 
 # Application definition
@@ -39,9 +39,14 @@ INSTALLED_APPS = [
     'login',
     'booking',
     "whitenoise.runserver_nostatic",
+    'api',
+    'rest_framework',
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
+'corsheaders.middleware.CorsMiddleware',
 "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'dcm_crm.urls'
 
 TEMPLATES = [
@@ -82,8 +87,6 @@ DATABASES = {
     }
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

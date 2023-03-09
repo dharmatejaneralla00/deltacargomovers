@@ -27,21 +27,12 @@ def book(r):
             othercharges = r.POST['othercharge']
             totalcharges = r.POST['totalcharge']
             door_delivery_charge = r.POST['door_delivery_charge']
-            if ctype == 'cash':
-                fname = r.POST['fname']
-                tname = r.POST['tname']
-                fadd = r.POST['fadd']
-                tadd = r.POST['tadd']
-                fno = r.POST['fno']
-                tno = r.POST['tno']
-            else:
-                c = clientlists.objects.get(clientname = clientlist)
-                fname = c.fname
-                tname = c.toname
-                fadd = c.fromadd
-                tadd = c.toadd
-                fno = c.fno
-                tno = c.tono
+            fname = r.POST['fname']
+            tname = r.POST['tname']
+            fadd = r.POST['fadd']
+            tadd = r.POST['tadd']
+            fno = r.POST['fno']
+            tno = r.POST['tno']
             models.Booking(date, ctype, fadd, tadd, fname, tname, fno, tno, pcs, wt, invno, invamt, charges, frcharges,
                            lrcharges, door_delivery_charge, othercharges, totalcharges, 1).save()
             return redirect('dashboard/')
