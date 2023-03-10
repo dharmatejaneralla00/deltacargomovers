@@ -1,6 +1,7 @@
 .form-gap {
-  margin-right: 3%;
+  margin-right: 1%;
   margin-top: 3%;
+  padding-left: -10px;
 }
 
 label {
@@ -18,8 +19,8 @@ select {
 
 .container {
   width: auto;
-  top: 20%;
-  margin-top: 8%;
+  top: 10%;
+  margin-top: 3%;
   align-items: center;
 }
 input[type="submit"] {
@@ -31,6 +32,7 @@ input[type="submit"] {
   border: 0;
   border-radius: 10px;
   padding: 10px;
+  padding-left: 0px;
   color: #ffffff;
   font-size: 16px;
   -webkit-transition: all 0.3 ease;

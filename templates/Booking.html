@@ -17,7 +17,12 @@
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Delta Cargo Movers</title>
-
+    <style>
+        .form-gap {
+            margin-bottom: 8px;
+            ;
+        }
+    </style>
 </head>
 {% include 'sidenav.html' %}
 
@@ -33,11 +38,32 @@
                     </div>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center ">
+                    <div class="form-gap" id="">
+                        <label>Destination</label>
+                        <select name="destination" id="destination">
+                            <option selected hidden>Destination</option>
+                            {% for i in destinations %}
+                            <option value="{{i.destination}}">{{i.destination}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center ">
+                <div class="col-md-3 d-flex justify-content-center ">
                     <div class="form-gap">
-
                         <select name="cashcredit" id="creditcard">
                             <option value="cash">Cash</option>
                             <option value="credit">Credit</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="form-gap">
+                        <label for="wt">paid/topay:</label>
+                        <select name="paid">
+                            <option value="paid">Pay</option>
+                            <option value="tobepaid">To</option>
                         </select>
                     </div>
                 </div>
@@ -45,7 +71,7 @@
                     <div class="form-gap" id="list" style="display: none;">
                         <label>Credit List</label>
                         <select name="clientlist" id="clientlist">
-                            <option selected hidden>Select from list</option>
+                            <option selected hidden>clientlist</option>
                             {% for i in clientlist %}
                             <option value="{{i.clientname}}">{{i.clientname}}</option>
                             {% endfor %}
@@ -69,20 +95,21 @@
                         <input type="number" id="wt" name="wt" value="0.0" onclick="settozero('wt')" required>
                     </div>
                 </div>
+
             </div>
             <div class="row d-flex justify-content-center ">
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="frname">
                         <label for="fname">From Name
                             :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input type="text" id="fromname" name="fname">
+                        <input type="text" id="fromname" name="fname" required>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="toname">
                         <label>To Name
                             :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input type="text" id="fname" name="tname">
+                        <input type="text" id="fname" name="tname" required>
                     </div>
                 </div>
             </div>
@@ -90,28 +117,30 @@
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="fadd">
                         <label for="fadd">From Address :</label>
-                        <input type="text" id="fromadd" name="fadd">
+                        <input type="text" id="fromadd" name="fadd" required>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="tadd">
                         <label for="tadd">To Address
                             :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input type="text" id="fname" name="tadd">
+                        <input type="text" id="fname" name="tadd" required>
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="fno">
-                        <label for="fno">From Phone No :</label>
-                        <input type="number" id="fromno" name="fno">
+                        <label for="fno">From Phone No:</label>
+                        <!-- :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
+                        <input type="number" id="fromno" name="fno" required>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex justify-content-center">
                     <div class="form-gap" id="tono">
-                        <label>To Phone No :</label>
-                        <input type="number" id="fname" name="tno">
+                        <label for="tno">To Phone No
+                            :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="number" id="fname" name="tno" required>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center ">
@@ -123,7 +152,8 @@
                     </div>
                     <div class="col-md-3 d-flex justify-content-center">
                         <div class="form-gap">
-                            <label>Invoice Amt :</label>
+                            <label>Invoice Amt
+                                :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <input type="number" id="fname" name="invamt" required>
                         </div>
                     </div>
@@ -204,9 +234,14 @@
             document.getElementById('fromname').value = " ";
             document.getElementById('fromadd').value = " ";
             document.getElementById('fromno').value = " ";
+            document.getElementById('fromname').disabled = false;
+            document.getElementById('fromadd').disabled = false;
+            document.getElementById('fromno').disabled = false;
         } else {
             list.style.display = "block";
-            document.getElementById('fromname').value = " ";
+            document.getElementById('fromname').disabled = true
+            document.getElementById('fromadd').disabled = true;
+            document.getElementById('fromno').disabled = true;
         }
     });
 

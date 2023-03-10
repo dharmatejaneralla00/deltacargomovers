@@ -9,6 +9,7 @@ class Booking(models.Model):
     toadd = models.CharField(max_length=100)
     fname = models.CharField(max_length=100)
     toname = models.CharField(max_length=100)
+    destination = models.CharField(max_length=100)
     fno = models.IntegerField()
     tono = models.IntegerField()
     pcs = models.IntegerField()
