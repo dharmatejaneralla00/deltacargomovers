@@ -8,7 +8,8 @@ from django.shortcuts import render, redirect
 from . import models
 import  docx2pdf
 from pathlib import Path
-import  pythoncom,mimetypes
+import  mimetypes
+import aspose.words as aw
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Create your views here.
@@ -90,7 +91,9 @@ def generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,
     filename = "templates/bookedlr/doc/"+lrno+".docx"
     doc.save(os.path.join(BASE_DIR,filename))
     # pythoncom.CoInitialize()
-    docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
+    # docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
+    docpdf = aw.Document(os.path.join(BASE_DIR,lrno+".docx"))
+    docpdf.save(os.path.join(BASE_DIR,lrno+'.pdf'))
 
 def bookedlrdownload(r,name):
     filepath = os.path.join(BASE_DIR,'templates/bookedlr/pdf/'+name+'.pdf')
