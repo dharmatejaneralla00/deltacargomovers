@@ -89,7 +89,7 @@ def generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,
     doc.render(context)
     filename = "templates/bookedlr/doc/"+lrno+".docx"
     doc.save(os.path.join(BASE_DIR,filename))
-    pythoncom.CoInitialize()
+    # pythoncom.CoInitialize()
     docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
 
 def bookedlrdownload(r,name):
