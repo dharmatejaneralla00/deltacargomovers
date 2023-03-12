@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from . import models
 import  docx2pdf
 from pathlib import Path
-import  pythoncom,mimetypes
+import mimetypes
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Create your views here.
