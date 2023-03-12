@@ -19,6 +19,7 @@ class UserLogins(models.Model):
     lrno = models.CharField(max_length=20)
     manifestno = models.CharField(max_length=20)
     drsno = models.CharField(max_length=20)
+    officeadd = models.CharField(max_length=60)
     def __str__(self):
         return self.username
 
