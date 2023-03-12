@@ -87,7 +87,7 @@ def generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,
         'char':charges,'frch':frch,'lrch':lrch,'ddch':ddch,'other':other,'total':total,'branchadd':branchadd,"date":date,'ewaybillno':ewaybill
     }
     doc.render(context)
-    filename = "bookedlr/"+lrno+".docx"
+    filename = lrno+".docx"
     doc.save(os.path.join(BASE_DIR,filename))
     # pythoncom.CoInitialize()
     docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
