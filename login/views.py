@@ -1,10 +1,11 @@
+from django.apps import apps
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 
 
 # Create your views here.
-
+booking = apps.get_model('booking','Booking')
 def login(r):
     if not r.user.is_authenticated:
         if r.method == 'POST':
@@ -24,7 +25,7 @@ def login(r):
 
 def dashbaord(r):
     if r.user.is_authenticated:
-        return render(r, 'dashboard-admin.html')
+        return render(r, 'dashboard-admin.html',{'bookingcount':booking.objects.filter(bookeduser = r.user.username).count()})
     else:
         return redirect('login/')
 

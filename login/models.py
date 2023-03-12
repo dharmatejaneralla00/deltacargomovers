@@ -14,9 +14,11 @@ class clientlist(models.Model):
 
 class UserLogins(models.Model):
     username = models.CharField(max_length=10)
-    usercode = models.CharField(max_length=10)
     area = models.CharField(max_length=10)
-
+    areacode = models.CharField(max_length=10)
+    lrno = models.CharField(max_length=20)
+    manifestno = models.CharField(max_length=20)
+    drsno = models.CharField(max_length=20)
     def __str__(self):
         return self.username
 
@@ -25,3 +27,9 @@ class Destination(models.Model):
 
     def __str__(self):
         return self.destination
+
+class Desc(models.Model):
+    desc = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.desc
