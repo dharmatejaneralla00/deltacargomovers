@@ -1,4 +1,5 @@
 import os.path
+import subprocess
 from wsgiref.util import FileWrapper
 
 from django.http import HttpResponse, StreamingHttpResponse
@@ -9,6 +10,7 @@ from . import models
 import  docx2pdf
 from pathlib import Path
 import  mimetypes
+import win32com.client as win32
 import aspose.words as aw
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,7 +69,7 @@ def book(r):
             generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,invno,invamt,charges,frcharges,lrcharges,door_delivery_charge,othercharges,totalcharges,lrno,desc,ewaybillno,userdetails.officeadd)
             # return redirect('bookedlrdownload/'+lrno)
             # return redirect('booking/')
-            filepath = os.path.join(BASE_DIR,lrno + '.pdf')
+            filepath = os.path.join(BASE_DIR, lrno + '.pdf')
             res = HttpResponse(open(filepath, 'rb').read(), content_type='application/pdf')
             res['Content-Disposition'] = 'attachment;filename=' + os.path.basename(filepath)
             return res
@@ -90,11 +92,17 @@ def generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,
     doc.render(context)
     filename = lrno+".docx"
     doc.save(os.path.join(BASE_DIR,filename))
+    doc.save(os.path.join(BASE_DIR,lrno+'.pdf'))
     # pythoncom.CoInitialize()
     # docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
-    docpdf = aw.Document(os.path.join(BASE_DIR,lrno+".docx"))
-    docpdf.save(os.path.join(BASE_DIR,lrno+'.pdf'))
-
+    # docpdf = aw.Document(os.path.join(BASE_DIR,lrno+".docx"))
+    # docpdf.save(os.path.join(BASE_DIR,lrno+'.pdf'))
+    # pypandoc.download_pandoc()
+    # pypandoc.convert_file(os.path.join(BASE_DIR,lrno+".docx"),'pdf',os.path.join(BASE_DIR,lrno+'.pdf')
+    # a2p_client = api2pdf.Api2Pdf('ba9ff499-04fe-4a63-a15b-213135583e44')
+    # res = a2p_client.LibreOffice.any_to_pdf('os.path.join(BASE_DIR,lrno+".docx")')
+    # print(res.result)
+    subprocess.call(['unoconv','-f', 'pdf', '-o',os.path.join(BASE_DIR,lrno+'.pdf'),os.path.join(BASE_DIR,lrno+".docx")])
 def bookedlrdownload(r,name):
     filepath = os.path.join(BASE_DIR,'templates/bookedlr/pdf/'+name+'.pdf')
     res = HttpResponse(open(filepath,'rb').read(),content_type='application/pdf')
