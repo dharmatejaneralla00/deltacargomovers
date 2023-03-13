@@ -10,7 +10,6 @@ from . import models
 import  docx2pdf
 from pathlib import Path
 import  mimetypes
-import win32com.client as win32
 import aspose.words as aw
 
 BASE_DIR = Path(__file__).resolve().parent.parent
