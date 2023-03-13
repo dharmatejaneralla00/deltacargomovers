@@ -68,7 +68,7 @@ def book(r):
             generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,invno,invamt,charges,frcharges,lrcharges,door_delivery_charge,othercharges,totalcharges,lrno,desc,ewaybillno,userdetails.officeadd)
             # return redirect('bookedlrdownload/'+lrno)
             # return redirect('booking/')
-            filepath = os.path.join(BASE_DIR, lrno + '.pdf')
+            filepath = os.path.join(BASE_DIR,'templates/bookedlr/'+ lrno + '.pdf')
             res = HttpResponse(open(filepath, 'rb').read(), content_type='application/pdf')
             res['Content-Disposition'] = 'attachment;filename=' + os.path.basename(filepath)
             return res
@@ -94,7 +94,7 @@ def generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,
     doc.save(os.path.join(BASE_DIR,filename))
     # doc.save(os.path.join(BASE_DIR,lrno+'.pdf'))
     # pythoncom.CoInitialize()
-    docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
+    docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/',lrno+".pdf"))
     # docpdf = aw.Document(os.path.join(BASE_DIR,'templates/bookedlr/'+lrno+".docx"))
     # docpdf.save(os.path.join(BASE_DIR,'templates/bookedlr/'+lrno+'.pdf'))
     # pypandoc.download_pandoc()
