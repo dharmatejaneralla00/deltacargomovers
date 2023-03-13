@@ -89,6 +89,7 @@ def generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,
         'pcs':pcs,'wt':wt,'invno':invno,'invamt':invamt,'destination':destination,'lrno':lrno,'paytype':ptype,
         'char':charges,'frch':frch,'lrch':lrch,'ddch':ddch,'other':other,'total':total,'branchadd':branchadd,"date":date,'ewaybillno':ewaybill
     }
+
     doc.render(context)
     filename = lrno+".docx"
     doc.save(os.path.join(BASE_DIR,filename))
