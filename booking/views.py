@@ -2,6 +2,7 @@ import os.path
 import subprocess
 from wsgiref.util import FileWrapper
 
+import pythoncom
 from django.http import HttpResponse, StreamingHttpResponse
 from docxtpl import DocxTemplate
 from django.apps import apps
@@ -9,7 +10,6 @@ from django.shortcuts import render, redirect
 from . import models
 import  docx2pdf
 from pathlib import Path
-import  mimetypes
 import aspose.words as aw
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,16 +93,16 @@ def generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,
     filename = lrno+".docx"
     doc.save(os.path.join(BASE_DIR,filename))
     doc.save(os.path.join(BASE_DIR,lrno+'.pdf'))
-    # pythoncom.CoInitialize()
-    # docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
-    # docpdf = aw.Document(os.path.join(BASE_DIR,lrno+".docx"))
-    # docpdf.save(os.path.join(BASE_DIR,lrno+'.pdf'))
+    pythoncom.CoInitialize()
+    docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
+    docpdf = aw.Document(os.path.join(BASE_DIR,lrno+".docx"))
+    docpdf.save(os.path.join(BASE_DIR,lrno+'.pdf'))
     # pypandoc.download_pandoc()
     # pypandoc.convert_file(os.path.join(BASE_DIR,lrno+".docx"),'pdf',os.path.join(BASE_DIR,lrno+'.pdf')
     # a2p_client = api2pdf.Api2Pdf('ba9ff499-04fe-4a63-a15b-213135583e44')
     # res = a2p_client.LibreOffice.any_to_pdf('os.path.join(BASE_DIR,lrno+".docx")')
     # print(res.result)
-    subprocess.call(['unoconv','-f', 'pdf', '-o',os.path.join(BASE_DIR,lrno+'.pdf'),os.path.join(BASE_DIR,lrno+".docx")])
+    # subprocess.call(['unoconv','-f', 'pdf', '-o',os.path.join(BASE_DIR,lrno+'.pdf'),os.path.join(BASE_DIR,lrno+".docx")])
 def bookedlrdownload(r,name):
     filepath = os.path.join(BASE_DIR,'templates/bookedlr/pdf/'+name+'.pdf')
     res = HttpResponse(open(filepath,'rb').read(),content_type='application/pdf')
