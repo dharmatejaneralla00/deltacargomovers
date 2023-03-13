@@ -93,10 +93,10 @@ def generatetemplate(date,fadd,tadd,fno,tno,fname,tname,destination,paid,pcs,wt,
     filename = lrno+".docx"
     doc.save(os.path.join(BASE_DIR,filename))
     doc.save(os.path.join(BASE_DIR,lrno+'.pdf'))
-    pythoncom.CoInitialize()
+    # pythoncom.CoInitialize()
     docx2pdf.convert(os.path.join(BASE_DIR,filename),os.path.join(BASE_DIR,'templates/bookedlr/pdf/',lrno+".pdf"))
-    docpdf = aw.Document(os.path.join(BASE_DIR,'templates/bookedlr/'+lrno+".docx"))
-    docpdf.save(os.path.join(BASE_DIR,'templates/bookedlr/'+lrno+'.pdf'))
+    # docpdf = aw.Document(os.path.join(BASE_DIR,'templates/bookedlr/'+lrno+".docx"))
+    # docpdf.save(os.path.join(BASE_DIR,'templates/bookedlr/'+lrno+'.pdf'))
     # pypandoc.download_pandoc()
     # pypandoc.convert_file(os.path.join(BASE_DIR,lrno+".docx"),'pdf',os.path.join(BASE_DIR,lrno+'.pdf')
     # a2p_client = api2pdf.Api2Pdf('ba9ff499-04fe-4a63-a15b-213135583e44')
